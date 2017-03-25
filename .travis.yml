@@ -1,8 +1,8 @@
 language: rust
 rust:
   - nightly
-sudo: false
+sudo: required
 
 install:
-  - apt-get install build-essential
+  - sudo apt-get install build-essential
   #libsdl2-dev
