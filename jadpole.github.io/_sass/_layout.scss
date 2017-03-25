@@ -1,0 +1,156 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#site-header, #site-footer, #main {
+    .wrapper {
+        max-width: $main-width;
+        margin: auto;
+        padding: 0 1rem;
+
+        @include media-query($on-laptop) {
+            & { padding: 0; }
+        }
+    }
+}
+
+
+/**
+ * Header
+ */
+
+#site-header {
+    height: 56px;
+    line-height: 56px;
+    background: #FFC107;
+    box-shadow: $shadow-1;
+}
+
+#site-title {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: -1px;
+    color: #fff;
+    text-shadow: 0.05rem 0.05rem 0.2rem rgba(0, 0, 0, 0.6);
+}
+
+#site-nav {
+    float: right;
+
+    a {
+        font-size: 18px;
+        color: $text-color-1;
+
+        &:hover {
+            color: lighten($text-color-1, 15%);
+            text-decoration: underline;
+        }
+
+        &:not(:first-child) {
+            margin-left: 20px;
+        }
+    }
+}
+
+
+/**
+ * Footer
+ */
+
+#site-footer {
+    padding: ($spacing-unit / 2) 0;
+    border-top: 1px dashed $text-color-4;
+    background: #FFF59D;
+    box-shadow: $shadow-1;
+}
+
+#site-footer .wrapper {
+    .site-title {
+        font-size: 1.2rem;
+    }
+
+    ul {
+        list-style-type: none;
+        margin-left: 0;
+    }
+}
+
+@include media-query($on-laptop) {
+    #site-footer .wrapper {
+        display: flex;
+        flex-flow: row nowrap;
+    }
+
+    #site-info { flex: 2; }
+    #social-medias { flex: 1; }
+    #site-description { flex: 3; }
+}
+
+
+/**
+ * Main
+ */
+
+#main {
+    flex: 1;
+
+    .wrapper {
+        padding: 1rem;
+
+        @include media-query($on-laptop) {
+            & {
+                padding: 1rem 0;
+                text-align: justify;
+            }
+        }
+    }
+}
+
+.post-list {
+    margin-left: 0;
+    list-style: none;
+
+    > li {
+        margin-bottom: $spacing-unit;
+    }
+}
+
+.post-meta {
+    font-size: $small-font-size;
+    color: $text-color-2;
+}
+
+
+
+/**
+ * In-post classes
+ */
+
+.tab-r {
+    padding-left: 2rem;
+}
+
+span[title] {
+    color: #009688;
+    cursor: help;
+    border-bottom: 1px dotted #009688;
+}
+
+span[title]:hover {
+    color: #00bfa5;
+}
+
+
+
+/**
+ * HTML5 components
+ */
+
+audio {
+    width: 90%;
+    display: block;
+    margin: 12px auto;
+}

@@ -1,0 +1,237 @@
+/**
+ * Reset some basic elements
+ */
+body, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+dl, dd, ol, ul, figure {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/**
+ * Basic styling
+ */
+body {
+    font-family: $base-font-family;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    font-weight: 300;
+    color: $text-color-1;
+    -webkit-text-size-adjust: 100%;
+}
+
+
+
+/**
+ * Set `margin-bottom` to maintain vertical rhythm
+ */
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+ul, ol, dl, figure,
+%vertical-rhythm {
+    margin-bottom: $spacing-unit / 2;
+}
+
+
+hr {
+    margin: ($spacing-unit / 2) 0;
+    padding: 0;
+    border-bottom: 1px dashed #ccc;
+    border-top: none;
+}
+
+
+
+/**
+ * Images
+ */
+img {
+    display: block;
+    max-width: 100%;
+    margin: $spacing-unit / 4 auto;
+    // box-shadow: $shadow-1;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/**
+* Lists
+*/
+ul, ol {
+    margin-left: $spacing-unit;
+}
+
+li {
+    > ul,
+    > ol {
+        margin-bottom: 0;
+    }
+}
+
+
+/**
+ * Tables
+ */
+table {
+    margin: $spacing-unit / 2 auto;
+    border-collapse: collapse;
+    border: 1px solid #00B0FF;
+    box-shadow: $shadow-1;
+}
+
+thead {
+    color: #fff;
+    background: #00B0FF;
+}
+
+tbody tr:hover {
+    background: #80D8FF;
+}
+
+th { font-weight: 500; }
+td, th {
+  padding: 0.2rem 1rem;
+}
+/*th:first-child { border-right: 1px dashed #40C4FF; }*/
+
+
+strong {
+    font-weight: 500;
+    color: #FF1744;
+}
+
+
+
+#main {
+
+    /**
+    * Figures
+    */
+    figure > img {
+        display: block;
+    }
+
+    figcaption {
+        font-size: $small-font-size;
+    }
+
+
+
+    /**
+    * Headings
+    */
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 300;
+    }
+
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.3rem; }
+
+    .post-content {
+        h2 { margin-top: 25px; }
+        h3 { margin-top: 20px; }
+    }
+
+
+
+    /**
+    * Links
+    */
+    a {
+        color: #D500F9;
+
+        &[href="#"] {
+            color: #FF9393 !important;
+            cursor: not-allowed;
+        }
+
+        &:visited {
+            color: darken(#D500F9, 15%);
+        }
+
+        &:hover {
+            color: #F50057;
+        }
+    }
+
+
+
+    /**
+    * Blockquotes
+    */
+    blockquote {
+        color: $text-color-1;
+        border-left: 4px solid $text-color-4;
+        padding-left: $spacing-unit / 2;
+        font-size: 17px;
+        letter-spacing: -1px;
+        font-style: italic;
+
+        > :last-child {
+            margin-bottom: 0;
+        }
+    }
+
+
+
+    /**
+    * Code formatting
+    */
+    code {
+        color: #770088;
+    }
+
+    pre.highlight {
+        color: $text-color-1;
+        border: 1px solid $text-color-4;
+        border-radius: 3px;
+        background-color: #fafafa;
+        padding: 8px 12px;
+        overflow-x: auto;
+
+        > code {
+            color: #111;
+            border: 0;
+            padding-right: 0;
+            padding-left: 0;
+        }
+    }
+}
+
+
+/**
+ * Clearfix
+ */
+%clearfix {
+
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+
+
+/**
+ * Icons
+ */
+.icon {
+
+    > svg {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        vertical-align: middle;
+
+        path {
+            fill: $text-color-2;
+        }
+    }
+}

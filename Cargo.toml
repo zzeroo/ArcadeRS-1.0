@@ -4,4 +4,8 @@ version = "0.1.0"
 authors = ["Stefan Müller <s.mueller@it.kls-glt.de>"]
 
 [dependencies]
-sdl2 = "*"
+
+[workspace]
+members = [
+  "arcade-rs-1-1",
+]
