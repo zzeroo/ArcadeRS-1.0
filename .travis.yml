@@ -4,5 +4,5 @@ rust:
 sudo: false
 
 install:
-  - sudo apt-get install build-essential
+  - apt-get install build-essential
   #libsdl2-dev
