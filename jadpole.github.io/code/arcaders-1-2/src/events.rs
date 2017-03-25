@@ -1,6 +1,5 @@
 use sdl2::EventPump;
 
-
 pub struct Events {
     pump: EventPump,
 
@@ -9,7 +8,7 @@ pub struct Events {
 }
 
 impl Events {
-    pub fn new(pump: EventPump) -> Self {
+    pub fn new(pump: EventPump) -> Events {
         Events {
             pump: pump,
 
@@ -18,10 +17,7 @@ impl Events {
         }
     }
 
-    /// Update the events record
     pub fn pump(&mut self) {
-        // If the SDL context is dropped, then poll_iter() will simply stop
-        // yieldung any input.
         for event in self.pump.poll_iter() {
             use sdl2::event::Event::*;
             use sdl2::keyboard::Keycode::*;
@@ -38,6 +34,7 @@ impl Events {
                     Some(Escape) => self.key_escape = false,
                     _ => {}
                 },
+
                 _ => {}
             }
         }

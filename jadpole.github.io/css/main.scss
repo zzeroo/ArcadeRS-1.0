@@ -1,0 +1,52 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+@import '//fonts.googleapis.com/css?family=Roboto:400,300,500,400italic';
+
+// Material-design variables
+
+$shadow-1: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+$shadow-2: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+
+$background-color: #f1f1f1;
+$text-color-1: #212121;
+$text-color-2: #727272;
+$text-color-3: #b8b8b8;
+$text-color-4: #dadada;
+
+// Other custom variables
+
+$base-font-size:   16px;
+$small-font-size:  $base-font-size * 0.875;
+$base-line-height: 1.5;
+
+$base-font-family: Roboto, Helvetica, Arial, sans-serif;
+$code-font-family: Inconsolata;
+
+$spacing-unit:  30px;
+$on-palm:       600px;
+$on-laptop:     800px;
+$main-width:    800px;
+
+
+// Using media queries with like this:
+// @include media-query($on-palm) {
+//     .wrapper {
+//         padding-right: $spacing-unit / 2;
+//         padding-left: $spacing-unit / 2;
+//     }
+// }
+@mixin media-query($device) {
+    @media screen and (min-width: $device) {
+        @content;
+    }
+}
+
+
+// Import partials from `sass_dir` (defaults to `_sass`)
+@import
+        "base",
+        "layout",
+        "syntax-highlighting"
+;
