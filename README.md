@@ -1,4 +1,4 @@
-# ArcadeRS 1.0
+# ArcadeRS 1.0 [![Build Status](https://travis-ci.org/zzeroo/ArcadeRS-1.0.svg?branch=master)](https://travis-ci.org/zzeroo/ArcadeRS-1.0)
 
 Dies ist eine aktualisierte Version der hervorragenden "ArcadeRS 1.0: The project" Blog Serie.
 
