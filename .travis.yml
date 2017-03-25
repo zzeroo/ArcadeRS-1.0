@@ -5,6 +5,11 @@ sudo: required
 
 install:
     # SDL2
-    - curl -O http://www.libsdl.org/release/SDL2-2.0.0.tar.gz
-    - tar -xzvf SDL2-2.0.0.tar.gz
-    - (cd SDL2-2.0.0 && ./configure && make && sudo make install)
+    # https://github.com/AngryLawyer/rust-sdl2/blob/master/.travis.yml
+    - wget https://www.libsdl.org/release/SDL2-2.0.5.tar.gz -O sdl2.tar.gz
+    - tar xzf sdl2.tar.gz
+    - pushd SDL2-* && ./configure && make && sudo make install && popd
+
+env:
+  global:
+    - LD_LIBRARY_PATH: "/usr/local/lib"
