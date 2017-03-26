@@ -8,4 +8,5 @@ authors = ["Stefan Müller <s.mueller@it.kls-glt.de>"]
 [workspace]
 members = [
   "arcade-rs-1-1",
+  "arcade-rs-1-2",
 ]
