@@ -9,4 +9,5 @@ authors = ["Stefan Müller <s.mueller@it.kls-glt.de>"]
 members = [
   "arcade-rs-1-1",
   "arcade-rs-1-2",
+  "arcade-rs-1-3",
 ]
