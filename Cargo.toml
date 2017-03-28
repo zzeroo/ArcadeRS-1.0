@@ -10,4 +10,5 @@ members = [
   "arcade-rs-1-1",
   "arcade-rs-1-2",
   "arcade-rs-1-3",
+  "arcade-rs-1-4",
 ]
