@@ -28,7 +28,7 @@ fn main() {
     loop {
         events.pump();
 
-        if events.now.quit || events.now.key_escape == Some(true) {
+        if true == events.now.quit || Some(true) == events.now.key_escape {
             break;
         }
 
