@@ -1,5 +1,5 @@
 [root]
-name = "arcade-rs-1-4"
+name = "arcade-rs-1-5"
 version = "0.1.1"
 dependencies = [
  "sdl2 0.29.0 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -25,6 +25,13 @@ dependencies = [
 
 [[package]]
 name = "arcade-rs-1-3"
+version = "0.1.1"
+dependencies = [
+ "sdl2 0.29.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "arcade-rs-1-4"
 version = "0.1.1"
 dependencies = [
  "sdl2 0.29.0 (registry+https://github.com/rust-lang/crates.io-index)",
