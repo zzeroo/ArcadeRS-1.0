@@ -9,7 +9,7 @@ install:
     # https://github.com/AngryLawyer/rust-sdl2/blob/master/.travis.yml
     - wget https://www.libsdl.org/tmp/SDL-2.0.5-10939.tar.gz -O sdl2.tar.gz
     - tar xzf sdl2.tar.gz
-    - pushd SDL2-* && ./configure && make && sudo make install && popd
+    - pushd SDL-2* && ./configure && make && sudo make install && popd
 env:
   global:
     - LD_LIBRARY_PATH: "/usr/local/lib"
