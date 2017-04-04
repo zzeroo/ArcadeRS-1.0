@@ -1,9 +1,8 @@
 use phi::{Phi, View, ViewAction};
 use phi::data::Rectangle;
-use std::path::Path;
+use phi::gfx::{CopySprite, Sprite};
 use sdl2::pixels::Color;
-use sdl2::render::{Texture, TextureQuery};
-use sdl2::image::LoadTexture;
+
 
 /// Pixels traveled by the player's ship every second, when it is moving.
 const PLAYER_SPEED: f64 = 180.0;
@@ -12,9 +11,26 @@ const SHIP_W: f64 = 43.0;
 const SHIP_H: f64 = 39.0;
 
 
+/// The different states our ship might be in. In the image, they're ordered
+/// from left to right, then from top to bottom.
+#[derive(Clone, Copy)]
+enum ShipFrame {
+    UpNorm   = 0,
+    UpFast   = 1,
+    UpSlow   = 2,
+    MidNorm  = 3,
+    MidFast  = 4,
+    MidSlow  = 5,
+    DownNorm = 6,
+    DownFast = 7,
+    DownSlow = 8,
+}
+
+
 struct Ship {
     rect: Rectangle,
-    tex: Texture,
+    sprites: Vec<Sprite>,
+    current: ShipFrame,
 }
 
 
@@ -24,13 +40,19 @@ pub struct ShipView {
 
 impl ShipView {
     pub fn new(phi: &mut Phi) -> ShipView {
-        //? Load the texture from the filesystem.
-        //? If it cannot be found, then there is no point in continuing: panic!
-        let tex = phi.renderer.load_texture(Path::new("assets/spaceship.png")).unwrap();
+        let spritesheet = Sprite::load(&mut phi.renderer, "assets/spaceship.png").unwrap();
+        let mut sprites = Vec::with_capacity(9);
 
-        //? Destructure some properties of the texture, notably width and
-        //? height, which will used for the ship's bounding box.
-        let TextureQuery { width, height, .. } = tex.query();
+        for y in 0..3 {
+            for x in 0..3 {
+                sprites.push(spritesheet.region(Rectangle {
+                    w: SHIP_W,
+                    h: SHIP_H,
+                    x: SHIP_W * x as f64,
+                    y: SHIP_H * y as f64,
+                }).unwrap());
+            }
+        }
 
         ShipView {
             player: Ship {
@@ -40,7 +62,8 @@ impl ShipView {
                     w: SHIP_W,
                     h: SHIP_H,
                 },
-                tex: tex,
+                sprites: sprites,
+                current: ShipFrame::MidNorm,
             }
         }
     }
@@ -95,6 +118,19 @@ impl View for ShipView {
         self.player.rect = self.player.rect.move_inside(movable_region).unwrap();
 
 
+        // Select the appropriate sprite of the ship to show.
+        self.player.current =
+            if dx == 0.0 && dy < 0.0       { ShipFrame::UpNorm }
+            else if dx > 0.0 && dy < 0.0   { ShipFrame::UpFast }
+            else if dx < 0.0 && dy < 0.0   { ShipFrame::UpSlow }
+            else if dx == 0.0 && dy == 0.0 { ShipFrame::MidNorm }
+            else if dx > 0.0 && dy == 0.0  { ShipFrame::MidFast }
+            else if dx < 0.0 && dy == 0.0  { ShipFrame::MidSlow }
+            else if dx == 0.0 && dy > 0.0  { ShipFrame::DownNorm }
+            else if dx > 0.0 && dy > 0.0   { ShipFrame::DownFast }
+            else if dx < 0.0 && dy > 0.0   { ShipFrame::DownSlow }
+            else { unreachable!() };
+
         // Clear the scene
         phi.renderer.set_draw_color(Color::RGB(0, 0, 0));
         phi.renderer.clear();
@@ -103,19 +139,9 @@ impl View for ShipView {
         phi.renderer.fill_rect(self.player.rect.to_sdl());
 
         // Render the ship
-        //? The texture to render is `self.player.tex` (we borrow it mutably)
-        phi.renderer.copy(&mut self.player.tex,
-            //? The "source region" of the image. Here, we take the entire image, from
-            //? the top left corner (0,0) to the bottom-right one (rect.w, rect.h).
-            Some(Rectangle {
-                x: 43.0 * 0.0,
-                y: 39.0 * 1.0,
-                w: self.player.rect.w,
-                h: self.player.rect.h,
-            }.to_sdl()),
-            //? The destination of the image. We simply provide the bouning box, the
-            //? renderer takes care of the rest.
-            Some(self.player.rect.to_sdl()));
+        phi.renderer.copy_sprite(
+            &self.player.sprites[self.player.current as usize],
+            self.player.rect);
 
         ViewAction::None
     }
