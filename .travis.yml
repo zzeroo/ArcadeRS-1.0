@@ -7,9 +7,14 @@ cache: cargo
 install:
     # SDL2
     # https://github.com/AngryLawyer/rust-sdl2/blob/master/.travis.yml
-    - wget https://www.libsdl.org/tmp/SDL-2.0.5-10939.tar.gz -O sdl2.tar.gz
+    - wget https://www.libsdl.org/release/SDL2-2.0.5.tar.gz -O sdl2.tar.gz
     - tar xzf sdl2.tar.gz
-    - pushd SDL-2* && ./configure && make && sudo make install && popd
+    - pushd SDL2-* && ./configure && make && sudo make install && popd
+    # SDL2_image
+    # https://www.libsdl.org/projects/SDL_image/
+    - wget https://www.libsdl.org/projects/SDL_image/release/SDL2_image-2.0.1.tar.gz -O SDL2_image.tar.gz
+    - tar xzf SDL2_image.tar.gz
+    - pushd SDL2_image-* && ./configure && make && sudo make install && popd
 env:
   global:
     - LD_LIBRARY_PATH: "/usr/local/lib"
