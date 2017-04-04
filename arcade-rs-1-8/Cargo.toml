@@ -1,0 +1,11 @@
+[package]
+name = "arcade-rs-1-8"
+version = "0.1.1"
+authors = ["Stefan Müller <s.mueller@it.kls-glt.de>"]
+
+[dependencies.sdl2]
+version = "0.29"
+default-features = false
+features = ["image"]
+
+[dependencies]
